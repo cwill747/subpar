@@ -130,7 +130,7 @@ parfile_attrs = {
         allow_single_file = True,
     ),
     "imports": attr.string_list(default = []),
-    "default_python_version": attr.string(mandatory = True),
+    "python_version": attr.string(mandatory = True),
     "compiler": attr.label(
         default = Label(DEFAULT_COMPILER),
         executable = True,
@@ -162,9 +162,9 @@ Args:
 
     See [py_binary.imports](http://www.bazel.io/docs/be/python.html#py_binary.imports)
 
-  default_python_version: A string specifying the default Python major version to use when building this par file.
+  python_version: A string specifying the default Python major version to use when building this par file.
 
-    See [py_binary.default_python_version](http://www.bazel.io/docs/be/python.html#py_binary.default_python_version)
+    See [py_binary.python_version](http://www.bazel.io/docs/be/python.html#py_binary.python_version)
 
   compiler: Internal use only.
 
@@ -210,14 +210,14 @@ def par_binary(name, **kwargs):
 
     main = kwargs.get("main", name + ".py")
     imports = kwargs.get("imports")
-    default_python_version = kwargs.get("default_python_version", "PY2")
+    python_version = kwargs.get("python_version", "PY2")
     visibility = kwargs.get("visibility")
     testonly = kwargs.get("testonly", False)
     tags = kwargs.get("tags", [])
     parfile(
         compiler = compiler,
         compiler_args = compiler_args,
-        default_python_version = default_python_version,
+        python_version = python_version,
         imports = imports,
         main = main,
         name = name + ".par",
@@ -240,13 +240,13 @@ def par_test(name, **kwargs):
 
     main = kwargs.get("main", name + ".py")
     imports = kwargs.get("imports")
-    default_python_version = kwargs.get("default_python_version", "PY2")
+    python_version = kwargs.get("python_version", "PY2")
     visibility = kwargs.get("visibility")
     testonly = kwargs.get("testonly", True)
     tags = kwargs.get("tags", [])
     parfile_test(
         compiler = compiler,
-        default_python_version = default_python_version,
+        python_version = python_version,
         imports = imports,
         main = main,
         name = name + ".par",

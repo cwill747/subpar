@@ -42,7 +42,7 @@ parfile(
     name = "compiler.par",
     src = ":compiler",
     compiler = ":compiler",
-    default_python_version = "PY2",
+    python_version = "PY2",
     main = "compiler.py",
 )
 
