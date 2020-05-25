@@ -14,7 +14,7 @@
 
 """Build self-contained python executables."""
 
-load("@io_bazel_rules_python//python:defs.bzl", "py_binary", "py_test")
+load("@rules_python//python:defs.bzl", "py_binary", "py_test")
 
 DEFAULT_COMPILER = "//compiler:compiler.par"
 
